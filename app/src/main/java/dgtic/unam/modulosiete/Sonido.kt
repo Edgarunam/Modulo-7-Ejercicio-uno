@@ -18,6 +18,8 @@ class Sonido : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySonidoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
         val stadoSD: String = Environment.getExternalStorageState()
         if (stadoSD == Environment.MEDIA_MOUNTED) {
             println("sistema=: " +
@@ -33,7 +35,7 @@ class Sonido : AppCompatActivity() {
                 }
             }
             archivos.add(ModeloAudio("Magenta_Moon_Part_II.mp3", R.drawable.musica_img,
-                "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"))
+                "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"))
         }
         adap = RecipeAdapter2(this, archivos)
         binding.list.adapter = adap
@@ -82,4 +84,9 @@ class Sonido : AppCompatActivity() {
             Toast.makeText(this, data.namefile, Toast.LENGTH_SHORT).show()
         }
     }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }
